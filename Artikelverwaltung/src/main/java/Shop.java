@@ -18,13 +18,20 @@ public class Shop implements Serializable
     private final String[][] users =
             new String[][]{
                     // password hash obtained with java LoginController koch i-am-the-boss
-                    new String[]{"koch",
-                            "+INdDt2JaxoJLHzD4iAlWPYMJA0uJhusP37DvMHBKmen15EMj1Vn7BAxWS1TYFniKFKjuSyIEFbxy9jSx4d8Tw==",
-                            "admin"},
-                    // password hash obtained with java LoginController you you-are-the-client
-                    new String[]{"you",
-                            "dNw2o1ZcCW+Ge/n/yfYpMLbUZ9fbxqLXEuxTa6ilzXLgmr1imFH27T6q9ZNzlqBeAdKIHDf5SopFt0ttbDybEg==",
-                            "client"}
+//                    new String[]{"koch",
+//                            "+INdDt2JaxoJLHzD4iAlWPYMJA0uJhusP37DvMHBKmen15EMj1Vn7BAxWS1TYFniKFKjuSyIEFbxy9jSx4d8Tw==",
+//                            "mperson"},
+//                    // password hash obtained with java LoginController you you-are-the-bperson
+//                    new String[]{"you",
+//                            "dNw2o1ZcCW+Ge/n/yfYpMLbUZ9fbxqLXEuxTa6ilzXLgmr1imFH27T6q9ZNzlqBeAdKIHDf5SopFt0ttbDybEg==",
+//                            "bperson"},
+                    new String[] {"mperson",
+                    		"7hquov1dbNiFQC3FinD27z8vyMnrX0sNcRzQLgKUmqsvZuizF2UICmlL4YPzz+cdhjxJK3MxEtTCg8KAlMvkjQ==",
+                    		"mperson"},
+                    new String[] {"bperson",
+                    		"2+9pbSmqAzj8hL3Z/eSYmtLDj/+J2+AIa356LI0GkgIrBipzId2LPLyY1GM7NJ+fW84FfLDjLZoolb51BJ/IMg==",
+                    		"bperson"
+                    }
             };
 
     public Shop()
@@ -64,10 +71,12 @@ public class Shop implements Serializable
         for(String[] user: users) {
             if(user[0].equals(name)) {
                 if(user[1].equals(passHash)) {
-                    if(user[2].equals("admin")) {
-                        currentUser.admin = true; return;
-                    } else if(user[2].equals("client")) {
-                        currentUser.client = true; return;
+                    if(user[2].equals("mperson")) {
+                        currentUser.mperson = true; 
+                        return;
+                    } else if(user[2].equals("bperson")) {
+                        currentUser.bperson = true; 
+                        return;
                     }
                     else throw new RuntimeException("Benutzer " + name + " ist falsch angelegt.");
                 }

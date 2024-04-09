@@ -7,22 +7,22 @@ import java.io.Serializable;
 @SessionScoped
 public class CurrentUser implements Serializable {
 
-    boolean admin, client;
+    boolean mperson, bperson;
 
     void reset() {
-        admin = false; client = false;
+        mperson = false; bperson = false;
     }
 
-    boolean isAdmin() {
-        return admin;
+    boolean isMperson() {
+        return mperson;
     }
 
-    boolean isClient() {
-        return client;
+    boolean isBperson() {
+        return bperson;
     }
 
     boolean isValid() {
-        return isClient() || isAdmin();
+        return isBperson() || isMperson();
     }
 
 }

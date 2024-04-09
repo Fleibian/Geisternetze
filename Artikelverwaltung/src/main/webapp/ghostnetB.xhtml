@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>Geisternetze</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <h:outputText value="#{loginController.checkLoginGhostnetB()}"/>
+</h:head>
+<h:body>
+	
+<!--<h:outputText value="Latitude: #{ghostnet.latitude}"></h:outputText><br />
+	<h:outputText value="Longitude: #{ghostnet.longitude}"></h:outputText><br />
+	<h:outputText value="Diameter: #{ghostnet.diameter}"></h:outputText><br />
+	<h:outputText value="Status: #{ghostnet.status}"></h:outputText> -->
+	<h:dataTable value="#{personBean.persons}" var="person">
+		<h:column>
+			<f:facet name ="header">Vorname</f:facet>
+			#{person.name}
+		</h:column>
+		<h:column>
+			<f:facet name ="header">Nachname</f:facet>
+			#{person.surname}
+		</h:column>
+		<h:column>
+			<f:facet name ="header">Telefon</f:facet>
+			#{person.phone}
+		</h:column>
+		<h:column>
+			<f:facet name ="header">Typ</f:facet>
+			#{person.type}
+		</h:column>
+		
+	</h:dataTable>
+
+	<h2>Geisternetz Informationen für bergende Personen</h2>
+    <h:dataTable value="#{ghostnetBean.ghostnets}" var="ghostnet">
+        <h:column>
+            <f:facet name="header">Location</f:facet>
+            #{ghostnet.location}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Diameter</f:facet>
+            #{ghostnet.diameter}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Status</f:facet>
+            #{ghostnet.status}
+        </h:column>
+        <h:column>
+        	<h:form>
+        		<h:commandButton value="Del" action="#{ghostnetBean.deleteRow(ghostnet)}"/>
+        	</h:form>
+        </h:column>
+    </h:dataTable>
+    
+    <h:form>
+        <h:commandButton value="Geisternetz erfassen" action="#{ghostnetBean.buttonAction}" />
+        <h:commandLink action="#{loginController.logout}" value="Logout"/>
+    </h:form>
+	
+	
+</h:body>
+</html>

@@ -65,7 +65,31 @@ public class LoginController implements Serializable {
             NavigationHandler nh = fc.getApplication().getNavigationHandler();
             nh.handleNavigation(fc, null, "login.xhtml?faces-redirect=true");
         }
-
+        
+    }
+    
+    // this method is called upon opening ghostnetM.xhtml to check if the Mperson is logged in. If not, be logged out and redirected to login.xhtml
+    public void checkLoginGhostnetM() {
+        if(!currentUser.isMperson()) {
+            failureMessage = "Falscher Benutzer, um auf GhostnetM zuzugreifen.";
+            currentUser.reset();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            NavigationHandler nh = fc.getApplication().getNavigationHandler();
+            nh.handleNavigation(fc, null, "login.xhtml?faces-redirect=true");
+        }
+        
+    }
+    
+    // this method is called upon opening ghostnetB.xhtml to check if the Bperson is logged in. If not, be logged out and redirected to login.xhtml
+    public void checkLoginGhostnetB() {
+        if(!currentUser.isBperson()) {
+            failureMessage = "Falscher Benutzer, um auf GhostnetM zuzugreifen.";
+            currentUser.reset();
+            FacesContext fc = FacesContext.getCurrentInstance();
+            NavigationHandler nh = fc.getApplication().getNavigationHandler();
+            nh.handleNavigation(fc, null, "login.xhtml?faces-redirect=true");
+        }
+        
     }
 
     public String logout() {
@@ -86,12 +110,12 @@ public class LoginController implements Serializable {
     }
 
     public String login() {
-        if (currentUser.isAdmin()) {
+        if (currentUser.isMperson()) {
             this.failureMessage = "";
-            return "backoffice.xhtml?faces-redirect=true";
-        } else if (currentUser.isClient()) {
+            return "ghostnetM.xhtml?faces-redirect=true";
+        } else if (currentUser.isBperson()) {
             this.failureMessage = "";
-            return "shopclient.xhtml?faces-redirect=true";
+            return "ghostnetB.xhtml?faces-redirect=true";
         } else {
             this.failureMessage = "Passwort und Benutzername nicht erkannt.";
             return "";
